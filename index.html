@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typing speed testing game</title>
+    <link rel="stylesheet" href="./dist/output.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <section class="h-screen bg-[#eee]">
+      <header
+        class="capitalize text-center font-bold text-white bg-cyan-600 py-4 text-xl"
+      >
+        typing speed testing game
+      </header>
+      <div id="quiz-container" class="w-[70%] mx-auto my-5">
+        <div
+          id="quiz-header"
+          class="bg-white text-center py-2 rounded-md opacity-80"
+        >
+          You are playing on [<span class="text-cyan-600 capitalize"></span>]
+          level and you have [<span class="text-cyan-600"></span>] Seconds to
+          type the word.
+        </div>
+        <button
+          id="start-btn"
+          class="my-3 w-full text-center text-white font-semibold text-2xl bg-slate-700 rounded-md capitalize py-1 tracking-widest hover:bg-white hover:text-slate-600"
+        >
+          start
+        </button>
+        <div
+          id="word-to-appear"
+          class="text-center text-6xl py-5 text-cyan-600 font-semibold capitalize select-none"
+        ></div>
+        <input
+          id="input"
+          type="text"
+          class="w-full outline-cyan-600 caret-cyan-600 text-center py-2 rounded-md placeholder:text-lg placeholder:capitalize disabled:bg-white"
+          placeholder="Type the word here"
+        />
+        <div
+          id="words-container"
+          class="words-container p-2 gap-2 bg-white my-3 rounded-md flex flex-wrap justify-center items-center"
+        ></div>
+        <footer
+          class="bg-white rounded-md flex justify-between py-2 px-3 opacity-80"
+        >
+          <div id="time-left" class="capitalize">
+            Time left: [<span></span>] Seconds
+          </div>
+          <div id="score" class="capitalize">
+            score: [<span class="text-cyan-600"></span>] of [<span
+              class="text-cyan-600"
+            ></span
+            >]
+          </div>
+        </footer>
+        <div
+          id="msg"
+          class="over text-center my-5 capitalize text-3xl font-semibold"
+        ></div>
+        <button
+          id="try-again"
+          class="mx-auto my-3 text-white bg-cyan-600 p-2 rounded-lg hover:text-cyan-600 hover:bg-white"
+        >
+          Try Again
+        </button>
+      </div>
+    </section>
+    <script src="./src/main.js"></script>
+  </body>
+</html>

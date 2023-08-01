@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.words-container span{
+    @apply bg-cyan-600 text-white rounded-md p-1 h-fit;
+}
+.over{
+    @apply text-red-500;
+}
+.success{
+    @apply text-green-500;
+}
