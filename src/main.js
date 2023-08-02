@@ -3,12 +3,15 @@ let quizHeader = document.getElementById("quiz-header");
 let wordToAppear = document.getElementById("word-to-appear");
 let input = document.getElementById("input");
 let wordsContainer = document.getElementById("words-container");
+let levelsContaine = document.getElementById("levels-conrtainer");
+let quizContainer = document.getElementById("quiz-container");
 let msg = document.getElementById("msg");
 let tryAgain = document.getElementById("try-again");
 let startBtn = document.getElementById("start-btn");
 let timer = document.querySelector("footer #time-left span");
 let headerSpans = Array.from(document.querySelectorAll("#quiz-header span"));
 let scores = Array.from(document.querySelectorAll("footer #score span"));
+let levelsArray = Array.from(document.getElementsByName("level"));
 let selectedWord = "";
 let chosenArrayLength = 15;
 let levels = {
@@ -16,7 +19,8 @@ let levels = {
     "medium": 5,
     "hard": 3
 };
-let defaultTime = 7;
+let chosenLevel;
+let defaultTime;
 let score = 0;
 let overallScore = 0;
 let easyWords = ["cat", "dog", "car", "sun", "cup", "hat", "pen", "map", "man", "bus", "top", "fun", "job", "sky", "red"];
@@ -24,6 +28,10 @@ let mediumWords = ["computer", "elephant", "guitar", "library", "mountain", "oce
 let hardWords = ["university", "accommodation", "entrepreneur", "international", "psychology", "sustainability", "architecture", "bureaucracy", "communication", "disadvantage", "environmental", "heterogeneous", "infrastructure", "opportunity", "quantitative"];
 input.onpaste = () => false;
 tryAgain.style.display = "none";
+levelsArray.map((e) => e.onclick = () => {
+    chosenLevel = e.id;
+    defaultTime = levels[chosenLevel];
+});
 function getRandomWord(words) {
     let chosenWord = words[Math.floor(Math.random() * words.length)];
     wordToAppear.innerHTML = chosenWord;
@@ -47,10 +55,14 @@ function setScore(score) {
     scores[1].innerHTML = `${chosenArrayLength}`;
 }
 startBtn.onclick = () => {
-    startBtn.remove();
-    editQuizHeader("easy");
-    getRandomWord(easyWords);
-    fillWordsContainer(easyWords);
+    if (chosenLevel === undefined)
+        return false;
+    input.focus();
+    levelsContaine.style.display = "none";
+    quizContainer.classList.remove("hidden");
+    editQuizHeader(chosenLevel);
+    getRandomWord(chosenLevel === "easy" ? easyWords : (chosenLevel === "medium") ? mediumWords : hardWords);
+    fillWordsContainer(chosenLevel === "easy" ? easyWords : (chosenLevel === "medium") ? mediumWords : hardWords);
     setScore(score);
     let setTime = setInterval(() => {
         timer.innerHTML = `${defaultTime}`;
@@ -78,13 +90,13 @@ startBtn.onclick = () => {
                 msg.classList.add("success");
             }
             else {
-                defaultTime = 7;
+                defaultTime = levels[chosenLevel];
                 input.value = "";
                 score++;
                 setScore(score);
-                getRandomWord(easyWords);
+                getRandomWord(chosenLevel === "easy" ? easyWords : (chosenLevel === "medium") ? mediumWords : hardWords);
                 wordsContainer.innerHTML = "";
-                fillWordsContainer(easyWords);
+                fillWordsContainer(chosenLevel === "easy" ? easyWords : (chosenLevel === "medium") ? mediumWords : hardWords);
             }
         }
     };

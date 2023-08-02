@@ -2,12 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-.words-container span{
-    @apply bg-cyan-600 text-white rounded-md p-1 h-fit;
+.words-container span {
+  @apply bg-cyan-600 text-white rounded-md p-1 h-fit;
 }
-.over{
-    @apply text-red-500;
+.over {
+  @apply text-red-500;
 }
-.success{
-    @apply text-green-500;
+.success {
+  @apply text-green-500;
+}
+input[name="level"]:checked + label {
+  @apply bg-[#eee];
 }
