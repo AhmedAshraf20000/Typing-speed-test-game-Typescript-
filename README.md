@@ -1,6 +1,6 @@
 # Project Title
 
-Leon Template
+Typing speed game
 
 ## Getting Started
 
